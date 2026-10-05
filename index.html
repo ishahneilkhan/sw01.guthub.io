@@ -1,1092 +1,2766 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SNK Support — Premium Support Center</title>
-
-<style>
-:root{
-  --bg:#050806;
-  --surface:#0b110d;
-  --surface2:#101810;
-  --text:#f4f7f3;
-  --muted:#9aa79b;
-  --line:rgba(255,255,255,.09);
-  --green:#68DE34;
-  --green2:#9aff70;
-}
-
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-}
-
-html{
-  scroll-behavior:smooth;
-}
-
-body{
-  font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-  background:var(--bg);
-  color:var(--text);
-  line-height:1.5;
-}
-
-a{
-  text-decoration:none;
-  color:inherit;
-}
-
-button{
-  font:inherit;
-}
-
-/* CONTAINER */
-
-.container{
-  width:min(1160px,92%);
-  margin:auto;
-}
-
-/* NAVBAR */
-
-.nav{
-  position:sticky;
-  top:0;
-  z-index:20;
-  background:rgba(5,8,6,.78);
-  backdrop-filter:blur(18px);
-  border-bottom:1px solid var(--line);
-}
-
-.nav-inner{
-  height:76px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-}
-
-.logo{
-  display:flex;
-  align-items:center;
-  gap:11px;
-  font-weight:900;
-  letter-spacing:-.5px;
-}
-
-.logo-mark{
-  width:38px;
-  height:38px;
-  border-radius:12px;
-  background:var(--green);
-  color:#061006;
-  display:grid;
-  place-items:center;
-  font-weight:1000;
-  box-shadow:0 0 35px rgba(104,222,52,.24);
-}
-
-.logo span{
-  color:var(--green);
-}
-
-.nav-links{
-  display:flex;
-  gap:28px;
-  color:#bdc6be;
-  font-size:14px;
-}
-
-.nav-links a:hover{
-  color:var(--green);
-}
-
-.nav-btn,
-.hero-btn{
-  border:0;
-  background:var(--green);
-  color:#061006;
-  font-weight:800;
-  padding:12px 18px;
-  border-radius:12px;
-  cursor:pointer;
-  box-shadow:0 12px 30px rgba(104,222,52,.15);
-}
-
-/* HERO */
-
-.hero{
-  position:relative;
-  overflow:hidden;
-  padding:110px 0 95px;
-
-  background:
-    radial-gradient(
-      circle at 80% 15%,
-      rgba(104,222,52,.16),
-      transparent 28%
-    ),
-
-    radial-gradient(
-      circle at 10% 80%,
-      rgba(104,222,52,.08),
-      transparent 30%
-    );
-}
-
-.grid-bg{
-  position:absolute;
-  inset:0;
-  opacity:.18;
-  pointer-events:none;
-
-  background-image:
-    linear-gradient(
-      rgba(255,255,255,.035) 1px,
-      transparent 1px
-    ),
-
-    linear-gradient(
-      90deg,
-      rgba(255,255,255,.035) 1px,
-      transparent 1px
-    );
-
-  background-size:52px 52px;
-}
-
-.hero-grid{
-  position:relative;
-  display:grid;
-  grid-template-columns:1.1fr .9fr;
-  gap:60px;
-  align-items:center;
-}
-
-.eyebrow{
-  display:inline-flex;
-  gap:8px;
-  align-items:center;
-
-  padding:7px 11px;
-
-  border:1px solid rgba(104,222,52,.25);
-
-  background:rgba(104,222,52,.07);
-
-  color:var(--green2);
-
-  border-radius:99px;
-
-  font-size:12px;
-  font-weight:800;
-}
-
-.dot{
-  width:7px;
-  height:7px;
-  border-radius:50%;
-  background:var(--green);
-  box-shadow:0 0 14px var(--green);
-}
-
-h1{
-  font-size:clamp(45px,6vw,76px);
-  line-height:.98;
-  letter-spacing:-4px;
-  margin:22px 0;
-}
-
-h1 em{
-  font-style:normal;
-  color:var(--green);
-}
-
-.hero p{
-  max-width:650px;
-  color:var(--muted);
-  font-size:18px;
-}
-
-.actions{
-  display:flex;
-  gap:12px;
-  margin-top:30px;
-  flex-wrap:wrap;
-}
-
-.secondary{
-  border:1px solid var(--line);
-  background:rgba(255,255,255,.03);
-  color:white;
-
-  padding:12px 18px;
-
-  border-radius:12px;
-
-  font-weight:700;
-}
-
-/* HERO CARD */
-
-.hero-card{
-  border:1px solid rgba(104,222,52,.17);
-
-  background:
-    linear-gradient(
-      145deg,
-      rgba(255,255,255,.07),
-      rgba(255,255,255,.025)
-    );
-
-  padding:24px;
-
-  border-radius:26px;
-
-  box-shadow:0 24px 70px rgba(0,0,0,.35);
-
-  position:relative;
-}
-
-.status{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:28px;
-}
-
-.status strong{
-  font-size:18px;
-}
-
-.online{
-  color:var(--green);
-  font-size:12px;
-  font-weight:800;
-}
-
-.stats{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:12px;
-}
-
-.stat{
-  padding:18px;
-
-  background:rgba(0,0,0,.22);
-
-  border:1px solid var(--line);
-
-  border-radius:17px;
-}
-
-.stat b{
-  font-size:26px;
-  display:block;
-}
-
-.stat small{
-  color:var(--muted);
-}
-
-.ticket{
-  margin-top:12px;
-
-  padding:18px;
-
-  border:1px solid var(--line);
-
-  border-radius:17px;
-
-  display:flex;
-  justify-content:space-between;
-  gap:15px;
-  align-items:center;
-}
-
-.ticket span{
-  color:var(--muted);
-  font-size:12px;
-}
-
-.ticket b{
-  display:block;
-  margin-top:4px;
-}
-
-.badge{
-  font-size:11px;
-  color:var(--green);
-
-  background:rgba(104,222,52,.1);
-
-  padding:6px 9px;
-
-  border-radius:99px;
-}
-
-/* SECTION */
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>WebsiteDeals Support | Help Center</title>
+
+  <meta
+    name="description"
+    content="WebsiteDeals Support Team — Basic Q&A, website assistance, account help, package support and Usha.ai instant support."
+  >
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet"
+  >
+
+  <style>
+
+    /* =========================================================
+       ROOT
+    ========================================================= */
+
+    :root{
+      --bg:#030604;
+      --bg2:#071009;
+      --surface:#0a110c;
+      --surface2:#0d170f;
+
+      --text:#f5f8f4;
+      --muted:#98a79a;
+
+      --green:#72f51e;
+      --green2:#a5ff70;
+      --green-dark:#10260e;
+
+      --line:rgba(255,255,255,.09);
+      --line-green:rgba(114,245,30,.28);
+
+      --shadow:0 30px 90px rgba(0,0,0,.45);
+
+      --radius:24px;
+    }
+
+
+    /* =========================================================
+       RESET
+    ========================================================= */
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
+
+    body{
+      font-family:Inter,Arial,sans-serif;
+      background:
+        radial-gradient(
+          circle at 80% 5%,
+          rgba(114,245,30,.10),
+          transparent 25%
+        ),
+        radial-gradient(
+          circle at 10% 80%,
+          rgba(114,245,30,.07),
+          transparent 25%
+        ),
+        var(--bg);
+
+      color:var(--text);
+      line-height:1.6;
+      overflow-x:hidden;
+    }
+
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      opacity:.18;
+
+      background-image:
+        linear-gradient(
+          rgba(255,255,255,.025) 1px,
+          transparent 1px
+        ),
+        linear-gradient(
+          90deg,
+          rgba(255,255,255,.025) 1px,
+          transparent 1px
+        );
+
+      background-size:55px 55px;
+      mask-image:linear-gradient(
+        to bottom,
+        black,
+        transparent 90%
+      );
+    }
+
+    a{
+      color:inherit;
+      text-decoration:none;
+    }
+
+    button{
+      font:inherit;
+    }
+
+    img{
+      max-width:100%;
+      display:block;
+    }
+
+
+    /* =========================================================
+       CONTAINER
+    ========================================================= */
+
+    .container{
+      width:min(1240px,92%);
+      margin:auto;
+    }
+
+
+    /* =========================================================
+       NAVBAR
+    ========================================================= */
+
+    .nav{
+      position:sticky;
+      top:0;
+      z-index:1000;
 
-.section{
-  padding:92px 0;
-}
+      border-bottom:1px solid var(--line);
+
+      background:rgba(3,6,4,.78);
+      backdrop-filter:blur(22px);
+      -webkit-backdrop-filter:blur(22px);
+    }
 
-.section-head{
-  display:flex;
-  justify-content:space-between;
-  gap:25px;
-  align-items:end;
-  margin-bottom:35px;
-}
+    .nav-inner{
+      min-height:78px;
+
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:25px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
 
-.kicker{
-  color:var(--green);
-  font-weight:900;
-  font-size:12px;
-  letter-spacing:1.5px;
-  text-transform:uppercase;
-}
+      font-size:18px;
+      font-weight:900;
+      letter-spacing:-.7px;
+    }
 
-h2{
-  font-size:clamp(30px,4vw,46px);
-  letter-spacing:-2px;
-  margin-top:8px;
-}
+    .brand-logo{
+      width:42px;
+      height:42px;
 
-.section-head p{
-  color:var(--muted);
-  max-width:450px;
-}
+      display:grid;
+      place-items:center;
 
-/* SUPPORT CARDS */
+      border-radius:13px;
 
-.cards{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:17px;
-}
+      background:linear-gradient(
+        135deg,
+        var(--green),
+        var(--green2)
+      );
 
-.card{
-  padding:26px;
+      color:#061006;
 
-  border:1px solid var(--line);
+      font-weight:1000;
+      font-size:17px;
 
-  background:
-    linear-gradient(
-      145deg,
-      #0c120e,
-      #080c09
-    );
+      box-shadow:
+        0 0 35px rgba(114,245,30,.22);
+    }
 
-  border-radius:22px;
+    .brand-text span{
+      display:block;
+      color:var(--green);
+      font-size:12px;
+      letter-spacing:1.8px;
+      text-transform:uppercase;
+      margin-top:-2px;
+    }
 
-  transition:.25s;
+    .nav-links{
+      display:flex;
+      align-items:center;
+      gap:30px;
 
-  position:relative;
-  overflow:hidden;
-}
+      color:#b9c3ba;
+      font-size:14px;
+      font-weight:600;
+    }
 
-.card:hover{
-  transform:translateY(-5px);
+    .nav-links a{
+      transition:.2s ease;
+    }
 
-  border-color:
-    rgba(104,222,52,.35);
-}
+    .nav-links a:hover{
+      color:var(--green);
+    }
 
-.icon{
-  width:48px;
-  height:48px;
+    .nav-btn{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
 
-  border-radius:15px;
+      padding:11px 17px;
 
-  background:rgba(104,222,52,.1);
+      border:1px solid var(--green);
+      border-radius:12px;
 
-  color:var(--green);
+      color:var(--green);
 
-  display:grid;
-  place-items:center;
+      font-weight:800;
+      font-size:13px;
 
-  font-size:20px;
+      box-shadow:
+        0 0 25px rgba(114,245,30,.08);
 
-  margin-bottom:20px;
-}
+      transition:.2s ease;
+    }
 
-.card h3{
-  font-size:19px;
-  margin-bottom:8px;
-}
+    .nav-btn:hover{
+      background:var(--green);
+      color:#061006;
+      box-shadow:
+        0 0 35px rgba(114,245,30,.25);
+    }
 
-.card p{
-  color:var(--muted);
-  font-size:14px;
-}
 
-.card a{
-  display:inline-block;
+    /* =========================================================
+       HERO
+    ========================================================= */
 
-  color:var(--green);
+    .hero{
+      position:relative;
+      padding:100px 0 90px;
+      overflow:hidden;
+    }
 
-  font-size:13px;
+    .hero::after{
+      content:"";
 
-  font-weight:800;
+      position:absolute;
 
-  margin-top:20px;
-}
+      width:550px;
+      height:550px;
 
-/* PACKAGES */
+      right:-250px;
+      top:-180px;
 
-.package-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:18px;
-}
+      border-radius:50%;
 
-.package{
-  padding:28px;
+      background:
+        radial-gradient(
+          circle,
+          rgba(114,245,30,.16),
+          transparent 68%
+        );
 
-  border:1px solid var(--line);
+      filter:blur(20px);
+      pointer-events:none;
+    }
 
-  border-radius:24px;
+    .hero-grid{
+      position:relative;
+      z-index:2;
 
-  background:var(--surface);
+      display:grid;
+      grid-template-columns:.88fr 1.12fr;
 
-  position:relative;
-}
+      gap:55px;
 
-.package.featured{
-  border-color:rgba(104,222,52,.45);
+      align-items:center;
+    }
 
-  box-shadow:
-    0 0 55px rgba(104,222,52,.07);
-}
 
-.popular{
-  position:absolute;
+    /* =========================================================
+       HERO LEFT
+    ========================================================= */
 
-  right:18px;
-  top:18px;
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:9px;
 
-  background:var(--green);
+      padding:7px 12px;
 
-  color:#061006;
+      border:1px solid var(--line-green);
+      border-radius:100px;
 
-  font-size:10px;
+      background:rgba(114,245,30,.06);
 
-  font-weight:900;
+      color:var(--green2);
 
-  padding:6px 9px;
+      font-size:11px;
+      font-weight:900;
 
-  border-radius:99px;
-}
+      letter-spacing:1px;
+    }
 
-.package h3{
-  font-size:22px;
-}
+    .eyebrow-dot{
+      width:7px;
+      height:7px;
 
-.price{
-  font-size:34px;
-  font-weight:900;
-  margin:18px 0;
-}
+      border-radius:50%;
 
-.price small{
-  font-size:12px;
-  color:var(--muted);
-  font-weight:500;
-}
+      background:var(--green);
 
-.package ul{
-  list-style:none;
+      box-shadow:
+        0 0 14px var(--green);
+    }
 
-  border-top:1px solid var(--line);
+    .hero h1{
+      margin-top:24px;
 
-  padding-top:18px;
-}
+      max-width:650px;
 
-.package li{
-  padding:8px 0;
+      font-size:clamp(48px,6vw,78px);
 
-  color:#b7c0b9;
+      line-height:.98;
 
-  font-size:14px;
-}
+      letter-spacing:-4.5px;
+    }
 
-.package li::before{
-  content:"✓";
+    .hero h1 span{
+      color:var(--green);
+    }
 
-  color:var(--green);
+    .hero-description{
+      max-width:590px;
 
-  font-weight:900;
+      margin-top:25px;
 
-  margin-right:9px;
-}
+      color:var(--muted);
 
-/* TEAM */
+      font-size:17px;
+    }
 
-.team{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:18px;
-}
+    .hero-description strong{
+      color:#fff;
+    }
 
-.person{
-  border:1px solid var(--line);
+    .hero-actions{
+      display:flex;
+      align-items:center;
+      flex-wrap:wrap;
 
-  background:var(--surface);
+      gap:12px;
 
-  border-radius:23px;
+      margin-top:30px;
+    }
 
-  padding:20px;
-}
+    .primary-btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:9px;
 
-.avatar{
-  height:230px;
+      padding:14px 20px;
 
-  border-radius:17px;
+      border-radius:13px;
 
-  background:
-    linear-gradient(
-      135deg,
-      #162017,
-      #0a0e0b
-    );
+      background:linear-gradient(
+        135deg,
+        var(--green),
+        var(--green2)
+      );
 
-  display:grid;
-  place-items:center;
+      color:#061006;
 
-  color:#536054;
+      font-size:14px;
+      font-weight:900;
 
-  font-size:58px;
+      box-shadow:
+        0 14px 35px rgba(114,245,30,.16);
 
-  font-weight:900;
-}
+      transition:.2s ease;
+    }
 
-.person h3{
-  margin-top:18px;
-}
+    .primary-btn:hover{
+      transform:translateY(-2px);
+      box-shadow:
+        0 18px 45px rgba(114,245,30,.25);
+    }
 
-.role{
-  color:var(--green);
+    .secondary-btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
 
-  font-size:12px;
+      padding:14px 20px;
 
-  font-weight:800;
-}
+      border:1px solid var(--line);
 
-.person p{
-  color:var(--muted);
+      border-radius:13px;
 
-  font-size:13px;
+      background:rgba(255,255,255,.025);
 
-  margin-top:8px;
-}
+      color:#fff;
 
-/* FAQ */
+      font-size:14px;
+      font-weight:800;
 
-.faq{
-  border-top:1px solid var(--line);
-}
+      transition:.2s ease;
+    }
 
-details{
-  border-bottom:1px solid var(--line);
-  padding:20px 0;
-}
+    .secondary-btn:hover{
+      border-color:var(--line-green);
+      background:rgba(114,245,30,.05);
+    }
 
-summary{
-  cursor:pointer;
+    .hero-features{
+      display:flex;
+      flex-wrap:wrap;
 
-  font-weight:800;
+      gap:20px;
 
-  list-style:none;
+      margin-top:42px;
+    }
 
-  display:flex;
+    .feature{
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
 
-  justify-content:space-between;
-}
+    .feature-icon{
+      width:39px;
+      height:39px;
 
-summary::after{
-  content:"+";
+      display:grid;
+      place-items:center;
 
-  color:var(--green);
+      border:1px solid var(--line-green);
+      border-radius:50%;
 
-  font-size:20px;
-}
+      color:var(--green);
 
-details[open] summary::after{
-  content:"−";
-}
+      background:rgba(114,245,30,.05);
 
-details p{
-  color:var(--muted);
+      font-size:16px;
+    }
 
-  padding-top:12px;
+    .feature span{
+      color:#bdc7bf;
+      font-size:12px;
+      line-height:1.3;
+    }
 
-  max-width:760px;
-}
+    .feature strong{
+      display:block;
+      color:#fff;
+      font-size:13px;
+    }
 
-/* CONTACT */
 
-.contact-row{
-  display:grid;
+    /* =========================================================
+       SUPPORT TEAM HERO PANEL
+    ========================================================= */
 
-  grid-template-columns:1.2fr .8fr;
+    .team-panel{
+      position:relative;
 
-  gap:18px;
-}
+      padding:24px;
 
-.cta{
-  padding:45px;
+      border:1px solid var(--line-green);
 
-  border-radius:28px;
+      border-radius:28px;
 
-  background:
-    linear-gradient(
-      120deg,
-      #68DE34,
-      #9aff70
-    );
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255,255,255,.055),
+          rgba(255,255,255,.015)
+        );
 
-  color:#071006;
+      box-shadow:var(--shadow);
 
-  box-shadow:
-    0 25px 70px rgba(104,222,52,.13);
-}
+      overflow:hidden;
+    }
 
-.cta h2{
-  max-width:600px;
-}
+    .team-panel::before{
+      content:"";
 
-.cta p{
-  margin-top:10px;
-  max-width:600px;
-}
+      position:absolute;
 
-.cta-btn{
-  display:inline-block;
+      width:300px;
+      height:300px;
 
-  margin-top:24px;
+      top:-160px;
+      right:-100px;
 
-  background:#061006;
+      border-radius:50%;
 
-  color:#fff;
+      background:
+        radial-gradient(
+          circle,
+          rgba(114,245,30,.18),
+          transparent 68%
+        );
+    }
 
-  padding:12px 18px;
+    .team-head{
+      position:relative;
 
-  border-radius:12px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
 
-  font-weight:800;
-}
+      gap:20px;
 
-/* FOOTER */
+      margin-bottom:20px;
+    }
 
-footer{
-  border-top:1px solid var(--line);
+    .team-title{
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
 
-  padding:35px 0;
+    .team-icon{
+      width:48px;
+      height:48px;
 
-  color:var(--muted);
+      display:grid;
+      place-items:center;
 
-  font-size:13px;
-}
+      border-radius:15px;
 
-.footer-inner{
-  display:flex;
+      background:rgba(114,245,30,.10);
 
-  justify-content:space-between;
+      color:var(--green);
 
-  gap:20px;
-}
+      font-size:22px;
+    }
 
-/* MOBILE */
+    .team-title h2{
+      font-size:25px;
+      letter-spacing:-1px;
+    }
 
-@media(max-width:850px){
+    .team-title p{
+      margin-top:2px;
 
-  .nav-links{
-    display:none;
-  }
+      color:var(--muted);
 
-  .hero-grid,
-  .contact-row{
-    grid-template-columns:1fr;
-  }
+      font-size:12px;
+    }
 
-  .cards,
-  .package-grid,
-  .team{
-    grid-template-columns:1fr;
-  }
+    .online-box{
+      display:flex;
+      align-items:center;
+      gap:8px;
 
-  .hero{
-    padding:75px 0;
-  }
+      padding:9px 12px;
 
-  .section{
-    padding:65px 0;
-  }
+      border:1px solid rgba(114,245,30,.25);
 
-  h1{
-    letter-spacing:-2.5px;
-  }
+      border-radius:100px;
 
-  .section-head{
-    display:block;
-  }
+      background:rgba(114,245,30,.07);
 
-  .section-head p{
-    margin-top:12px;
-  }
+      white-space:nowrap;
+    }
 
-  .footer-inner{
-    display:block;
-  }
-}
-</style>
+    .online-dot{
+      width:8px;
+      height:8px;
+
+      border-radius:50%;
+
+      background:var(--green);
+
+      box-shadow:0 0 13px var(--green);
+    }
+
+    .online-box strong{
+      display:block;
+
+      color:var(--green);
+
+      font-size:11px;
+    }
+
+    .online-box small{
+      display:block;
+
+      color:#8f9b91;
+
+      font-size:9px;
+    }
+
+
+    /* =========================================================
+       TEAM GRID
+    ========================================================= */
+
+    .team-grid{
+      display:grid;
+
+      grid-template-columns:
+        repeat(6,1fr);
+
+      gap:12px;
+    }
+
+    .member{
+      position:relative;
+
+      padding:13px;
+
+      border:1px solid var(--line);
+
+      border-radius:19px;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255,255,255,.045),
+          rgba(255,255,255,.015)
+        );
+
+      transition:.25s ease;
+
+      overflow:hidden;
+    }
+
+    .member:nth-child(1),
+    .member:nth-child(2),
+    .member:nth-child(3){
+      grid-column:span 2;
+    }
+
+    .member:nth-child(4),
+    .member:nth-child(5){
+      grid-column:span 3;
+    }
+
+    .member:hover{
+      transform:translateY(-4px);
+
+      border-color:
+        rgba(114,245,30,.38);
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(114,245,30,.07),
+          rgba(255,255,255,.015)
+        );
+    }
+
+    .member-photo{
+      position:relative;
+
+      height:145px;
+
+      overflow:hidden;
+
+      border-radius:14px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #17251a,
+          #081009
+        );
+
+      border:1px solid rgba(114,245,30,.18);
+    }
+
+    .member-photo img{
+      width:100%;
+      height:100%;
+
+      object-fit:cover;
+    }
+
+    .member-placeholder{
+      width:100%;
+      height:100%;
+
+      display:grid;
+      place-items:center;
+
+      color:var(--green);
+
+      font-size:45px;
+      font-weight:900;
+
+      background:
+        radial-gradient(
+          circle at 50% 20%,
+          rgba(114,245,30,.15),
+          transparent 45%
+        );
+    }
+
+    .member-status{
+      position:absolute;
+
+      top:9px;
+      right:9px;
+
+      display:flex;
+      align-items:center;
+      gap:5px;
+
+      padding:5px 8px;
+
+      border-radius:100px;
+
+      background:rgba(3,6,4,.82);
+
+      border:1px solid rgba(114,245,30,.35);
+
+      color:#fff;
+
+      font-size:9px;
+      font-weight:800;
+    }
+
+    .member-status i{
+      width:6px;
+      height:6px;
+
+      border-radius:50%;
+
+      background:var(--green);
+      box-shadow:0 0 9px var(--green);
+    }
+
+    .member h3{
+      margin-top:12px;
+
+      font-size:15px;
+
+      letter-spacing:-.4px;
+    }
+
+    .member-role{
+      margin-top:2px;
+
+      color:var(--green);
+
+      font-size:10px;
+
+      font-weight:800;
+    }
+
+    .member p{
+      min-height:42px;
+
+      margin-top:7px;
+
+      color:#929d94;
+
+      font-size:10px;
+
+      line-height:1.45;
+    }
+
+    .member-actions{
+      display:flex;
+
+      gap:6px;
+
+      margin-top:11px;
+    }
+
+    .member-actions a{
+      flex:1;
+
+      display:flex;
+      align-items:center;
+      justify-content:center;
+
+      padding:7px 6px;
+
+      border:1px solid var(--line);
+
+      border-radius:9px;
+
+      font-size:9px;
+      font-weight:800;
+
+      transition:.2s ease;
+    }
+
+    .member-actions a:first-child{
+      background:var(--green);
+      color:#061006;
+
+      border-color:var(--green);
+    }
+
+    .member-actions a:last-child:hover{
+      border-color:var(--green);
+      color:var(--green);
+    }
+
+
+    /* =========================================================
+       USHA AI
+    ========================================================= */
+
+    .ai-support{
+      position:relative;
+
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+
+      gap:20px;
+
+      margin-top:15px;
+
+      padding:17px 19px;
+
+      border:1px solid rgba(114,245,30,.30);
+
+      border-radius:18px;
+
+      background:
+        linear-gradient(
+          90deg,
+          rgba(114,245,30,.09),
+          rgba(114,245,30,.025)
+        );
+    }
+
+    .ai-left{
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+
+    .ai-icon{
+      width:43px;
+      height:43px;
+
+      display:grid;
+      place-items:center;
+
+      border-radius:13px;
+
+      background:var(--green);
+
+      color:#061006;
+
+      font-weight:1000;
+      font-size:16px;
+
+      box-shadow:
+        0 0 25px rgba(114,245,30,.20);
+    }
+
+    .ai-left h3{
+      font-size:14px;
+    }
+
+    .ai-left p{
+      margin-top:2px;
+
+      color:#8e9a91;
+
+      font-size:10px;
+    }
+
+    .ai-badge{
+      padding:7px 10px;
+
+      border-radius:100px;
+
+      background:rgba(114,245,30,.09);
+
+      border:1px solid rgba(114,245,30,.25);
+
+      color:var(--green);
+
+      font-size:9px;
+      font-weight:900;
+    }
+
+
+    /* =========================================================
+       SECTION
+    ========================================================= */
+
+    .section{
+      padding:100px 0;
+    }
+
+    .section-head{
+      max-width:700px;
+
+      margin-bottom:38px;
+    }
+
+    .kicker{
+      color:var(--green);
+
+      font-size:11px;
+
+      font-weight:900;
+
+      letter-spacing:2px;
+
+      text-transform:uppercase;
+    }
+
+    .section-head h2{
+      margin-top:8px;
+
+      font-size:clamp(32px,4vw,48px);
+
+      line-height:1.05;
+
+      letter-spacing:-2px;
+    }
+
+    .section-head p{
+      margin-top:13px;
+
+      color:var(--muted);
+
+      font-size:15px;
+    }
+
+
+    /* =========================================================
+       SUPPORT CARDS
+    ========================================================= */
+
+    .support-grid{
+      display:grid;
+
+      grid-template-columns:
+        repeat(3,1fr);
+
+      gap:16px;
+    }
+
+    .support-card{
+      padding:25px;
+
+      border:1px solid var(--line);
+
+      border-radius:22px;
+
+      background:
+        linear-gradient(
+          145deg,
+          #0c150e,
+          #070c08
+        );
+
+      transition:.25s ease;
+    }
+
+    .support-card:hover{
+      transform:translateY(-5px);
+
+      border-color:
+        rgba(114,245,30,.32);
+    }
+
+    .support-icon{
+      width:47px;
+      height:47px;
+
+      display:grid;
+      place-items:center;
+
+      margin-bottom:19px;
+
+      border-radius:14px;
+
+      background:rgba(114,245,30,.09);
+
+      color:var(--green);
+
+      font-size:20px;
+    }
+
+    .support-card h3{
+      font-size:18px;
+    }
+
+    .support-card p{
+      margin-top:8px;
+
+      color:var(--muted);
+
+      font-size:13px;
+    }
+
+    .support-card a{
+      display:inline-block;
+
+      margin-top:19px;
+
+      color:var(--green);
+
+      font-size:12px;
+
+      font-weight:900;
+    }
+
+
+    /* =========================================================
+       USHA AI SECTION
+    ========================================================= */
+
+    .usha-section{
+      position:relative;
+
+      overflow:hidden;
+
+      padding:35px;
+
+      border:1px solid var(--line-green);
+
+      border-radius:28px;
+
+      background:
+        radial-gradient(
+          circle at 85% 20%,
+          rgba(114,245,30,.13),
+          transparent 25%
+        ),
+        linear-gradient(
+          135deg,
+          #0d170f,
+          #071009
+        );
+    }
+
+    .usha-grid{
+      display:grid;
+
+      grid-template-columns:
+        1fr .8fr;
+
+      gap:50px;
+
+      align-items:center;
+    }
+
+    .usha-title{
+      display:flex;
+      align-items:center;
+      gap:13px;
+    }
+
+    .usha-logo{
+      width:56px;
+      height:56px;
+
+      display:grid;
+      place-items:center;
+
+      border-radius:17px;
+
+      background:
+        linear-gradient(
+          135deg,
+          var(--green),
+          var(--green2)
+        );
+
+      color:#061006;
+
+      font-size:22px;
+      font-weight:1000;
+    }
+
+    .usha-title h2{
+      font-size:30px;
+      letter-spacing:-1.5px;
+    }
+
+    .usha-title span{
+      display:block;
+
+      color:var(--green);
+
+      font-size:11px;
+
+      letter-spacing:1px;
+
+      text-transform:uppercase;
+    }
+
+    .usha-content > p{
+      max-width:650px;
+
+      margin-top:20px;
+
+      color:#aab5ac;
+
+      font-size:15px;
+    }
+
+    .usha-list{
+      display:grid;
+
+      grid-template-columns:
+        repeat(2,1fr);
+
+      gap:10px;
+
+      margin-top:23px;
+    }
+
+    .usha-item{
+      padding:12px 13px;
+
+      border:1px solid var(--line);
+
+      border-radius:13px;
+
+      background:rgba(255,255,255,.025);
+
+      color:#bdc7bf;
+
+      font-size:11px;
+    }
+
+    .usha-item::before{
+      content:"✓";
+
+      margin-right:8px;
+
+      color:var(--green);
+
+      font-weight:900;
+    }
+
+    .chat-preview{
+      padding:18px;
+
+      border:1px solid var(--line-green);
+
+      border-radius:22px;
+
+      background:rgba(0,0,0,.25);
+
+      box-shadow:
+        0 25px 60px rgba(0,0,0,.25);
+    }
+
+    .chat-top{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+
+      padding-bottom:14px;
+
+      border-bottom:1px solid var(--line);
+    }
+
+    .chat-user{
+      display:flex;
+      align-items:center;
+      gap:9px;
+    }
+
+    .chat-avatar{
+      width:36px;
+      height:36px;
+
+      display:grid;
+      place-items:center;
+
+      border-radius:11px;
+
+      background:var(--green);
+
+      color:#061006;
+
+      font-weight:1000;
+    }
+
+    .chat-user strong{
+      display:block;
+      font-size:12px;
+    }
+
+    .chat-user small{
+      color:var(--green);
+      font-size:9px;
+    }
+
+    .chat-message{
+      max-width:85%;
+
+      margin-top:15px;
+
+      padding:12px;
+
+      border-radius:13px 13px 13px 3px;
+
+      background:#101912;
+
+      color:#aab5ac;
+
+      font-size:11px;
+    }
+
+    .chat-message.user{
+      margin-left:auto;
+
+      border-radius:13px 13px 3px 13px;
+
+      background:rgba(114,245,30,.12);
+
+      color:#d7e3d9;
+    }
+
+    .chat-input{
+      display:flex;
+
+      gap:8px;
+
+      margin-top:15px;
+    }
+
+    .chat-input span{
+      flex:1;
+
+      padding:10px 12px;
+
+      border:1px solid var(--line);
+
+      border-radius:10px;
+
+      color:#68736b;
+
+      font-size:10px;
+    }
+
+    .chat-input button{
+      width:38px;
+
+      border:0;
+
+      border-radius:10px;
+
+      background:var(--green);
+
+      color:#061006;
+
+      font-weight:900;
+
+      cursor:pointer;
+    }
+
+
+    /* =========================================================
+       FAQ
+    ========================================================= */
+
+    .faq{
+      border-top:1px solid var(--line);
+    }
+
+    details{
+      border-bottom:1px solid var(--line);
+      padding:21px 0;
+    }
+
+    summary{
+      display:flex;
+      justify-content:space-between;
+      gap:20px;
+
+      cursor:pointer;
+
+      list-style:none;
+
+      font-size:14px;
+      font-weight:800;
+    }
+
+    summary::-webkit-details-marker{
+      display:none;
+    }
+
+    summary::after{
+      content:"+";
+
+      color:var(--green);
+
+      font-size:20px;
+      line-height:1;
+    }
+
+    details[open] summary::after{
+      content:"−";
+    }
+
+    details p{
+      max-width:780px;
+
+      padding-top:12px;
+
+      color:var(--muted);
+
+      font-size:13px;
+    }
+
+
+    /* =========================================================
+       CONTACT CTA
+    ========================================================= */
+
+    .contact{
+      padding:35px;
+
+      border-radius:28px;
+
+      background:
+        linear-gradient(
+          120deg,
+          var(--green),
+          var(--green2)
+        );
+
+      color:#061006;
+
+      box-shadow:
+        0 30px 80px rgba(114,245,30,.12);
+    }
+
+    .contact h2{
+      max-width:700px;
+
+      font-size:clamp(30px,4vw,46px);
+
+      line-height:1.05;
+
+      letter-spacing:-2px;
+    }
+
+    .contact p{
+      max-width:650px;
+
+      margin-top:10px;
+
+      font-size:14px;
+    }
+
+    .contact-btn{
+      display:inline-flex;
+      align-items:center;
+
+      margin-top:22px;
+
+      padding:13px 19px;
+
+      border-radius:12px;
+
+      background:#061006;
+
+      color:#fff;
+
+      font-size:13px;
+
+      font-weight:900;
+    }
+
+
+    /* =========================================================
+       FOOTER
+    ========================================================= */
+
+    footer{
+      padding:35px 0;
+
+      border-top:1px solid var(--line);
+
+      color:#7f8a81;
+
+      font-size:12px;
+    }
+
+    .footer-inner{
+      display:flex;
+
+      align-items:center;
+      justify-content:space-between;
+
+      gap:20px;
+    }
+
+    .footer-brand{
+      color:#fff;
+      font-weight:900;
+    }
+
+    .footer-brand span{
+      color:var(--green);
+    }
+
+
+    /* =========================================================
+       MOBILE
+    ========================================================= */
+
+    @media(max-width:1000px){
+
+      .hero-grid{
+        grid-template-columns:1fr;
+      }
+
+      .hero-left{
+        max-width:750px;
+      }
+
+      .team-grid{
+        grid-template-columns:
+          repeat(2,1fr);
+      }
+
+      .member:nth-child(1),
+      .member:nth-child(2),
+      .member:nth-child(3),
+      .member:nth-child(4),
+      .member:nth-child(5){
+        grid-column:span 1;
+      }
+
+      .usha-grid{
+        grid-template-columns:1fr;
+      }
+
+      .support-grid{
+        grid-template-columns:
+          repeat(2,1fr);
+      }
+    }
+
+
+    @media(max-width:760px){
+
+      .nav-links{
+        display:none;
+      }
+
+      .nav-inner{
+        min-height:70px;
+      }
+
+      .nav-btn{
+        padding:9px 12px;
+        font-size:11px;
+      }
+
+      .hero{
+        padding:70px 0;
+      }
+
+      .hero h1{
+        font-size:48px;
+        letter-spacing:-3px;
+      }
+
+      .team-panel{
+        padding:17px;
+      }
+
+      .team-head{
+        align-items:flex-start;
+        flex-direction:column;
+      }
+
+      .online-box{
+        align-self:flex-start;
+      }
+
+      .team-grid{
+        grid-template-columns:1fr;
+      }
+
+      .member:nth-child(1),
+      .member:nth-child(2),
+      .member:nth-child(3),
+      .member:nth-child(4),
+      .member:nth-child(5){
+        grid-column:span 1;
+      }
+
+      .member-photo{
+        height:190px;
+      }
+
+      .ai-support{
+        align-items:flex-start;
+        flex-direction:column;
+      }
+
+      .support-grid{
+        grid-template-columns:1fr;
+      }
+
+      .section{
+        padding:70px 0;
+      }
+
+      .usha-section{
+        padding:22px;
+      }
+
+      .usha-list{
+        grid-template-columns:1fr;
+      }
+
+      .footer-inner{
+        align-items:flex-start;
+        flex-direction:column;
+      }
+    }
+
+
+    @media(max-width:480px){
+
+      .brand-text{
+        font-size:15px;
+      }
+
+      .brand-logo{
+        width:38px;
+        height:38px;
+      }
+
+      .nav-btn{
+        display:none;
+      }
+
+      .hero h1{
+        font-size:42px;
+      }
+
+      .hero-description{
+        font-size:15px;
+      }
+
+      .hero-actions{
+        flex-direction:column;
+        align-items:stretch;
+      }
+
+      .primary-btn,
+      .secondary-btn{
+        width:100%;
+      }
+
+      .hero-features{
+        gap:13px;
+      }
+
+      .feature{
+        width:100%;
+      }
+
+      .team-title h2{
+        font-size:21px;
+      }
+
+      .team-title p{
+        font-size:10px;
+      }
+
+      .member-photo{
+        height:210px;
+      }
+
+      .usha-title h2{
+        font-size:25px;
+      }
+    }
+
+  </style>
 </head>
+
 
 <body>
 
-<!-- NAVBAR -->
 
-<nav class="nav">
+  <!-- =======================================================
+       NAVIGATION
+  ======================================================== -->
 
-<div class="container nav-inner">
+  <nav class="nav">
 
-<a class="logo" href="#">
+    <div class="container nav-inner">
 
-<div class="logo-mark">
-S
-</div>
+      <a href="#" class="brand">
 
-<div>
-SNK <span>SUPPORT</span>
-</div>
+        <div class="brand-logo">
+          WD
+        </div>
 
-</a>
+        <div class="brand-text">
+          WebsiteDeals
+          <span>Support Center</span>
+        </div>
 
-<div class="nav-links">
+      </a>
 
-<a href="#support">
-Support
-</a>
 
-<a href="#packages">
-Packages
-</a>
+      <div class="nav-links">
 
-<a href="#team">
-Team
-</a>
+        <a href="#home">
+          Home
+        </a>
 
-<a href="#faq">
-FAQ
-</a>
+        <a href="#support">
+          Help Center
+        </a>
 
-<a href="#contact">
-Contact
-</a>
+        <a href="#team">
+          Support Team
+        </a>
 
-</div>
+        <a href="#faq">
+          FAQ
+        </a>
 
-<a class="nav-btn" href="#contact">
-Get Support
-</a>
+        <a href="#contact">
+          Contact
+        </a>
 
-</div>
+      </div>
 
-</nav>
 
+      <a
+        href="#contact"
+        class="nav-btn"
+      >
+        🎧 Get Support
+      </a>
 
-<!-- HERO -->
+    </div>
 
-<header class="hero">
+  </nav>
 
-<div class="grid-bg"></div>
 
-<div class="container hero-grid">
 
-<div>
+  <!-- =======================================================
+       HERO
+  ======================================================== -->
 
-<div class="eyebrow">
+  <header
+    class="hero"
+    id="home"
+  >
 
-<span class="dot"></span>
+    <div class="container hero-grid">
 
-SUPPORT CENTER · ONLINE
 
-</div>
+      <!-- HERO LEFT -->
 
-<h1>
+      <div class="hero-left">
 
-Help when you need it.
+        <div class="eyebrow">
 
-<br>
+          <span class="eyebrow-dot"></span>
 
-<em>
-Support that works.
-</em>
+          WEBSITEDEALS · SUPPORT CENTER
 
-</h1>
+        </div>
 
-<p>
 
-Welcome to the SNK Support Center —
-your dedicated place for package assistance,
-technical support, account help and direct
-communication with our team.
+        <h1>
 
-</p>
+          Help when
+          <br>
 
-<div class="actions">
+          <span>you need it.</span>
 
-<a class="hero-btn" href="#support">
-Explore Support
-</a>
+        </h1>
 
-<a class="secondary" href="#packages">
-View Packages
-</a>
 
-</div>
+        <p class="hero-description">
 
-</div>
+          Welcome to the
+          <strong>WebsiteDeals Support Center.</strong>
 
+          Get quick answers, basic Q/A assistance,
+          website guidance and direct help from our
+          support team.
 
-<!-- DASHBOARD -->
+        </p>
 
-<div class="hero-card">
 
-<div class="status">
+        <div class="hero-actions">
 
-<strong>
-Support Dashboard
-</strong>
+          <a
+            href="#usha-ai"
+            class="primary-btn"
+          >
+            ✦ Ask Usha.ai
+          </a>
 
-<span class="online">
-● ONLINE
-</span>
+          <a
+            href="#team"
+            class="secondary-btn"
+          >
+            Meet Support Team
+          </a>
 
-</div>
+        </div>
 
 
-<div class="stats">
+        <div class="hero-features">
 
-<div class="stat">
+          <div class="feature">
 
-<b>
-24/7
-</b>
+            <div class="feature-icon">
+              ⚡
+            </div>
 
-<small>
-Request access
-</small>
+            <span>
+              <strong>Quick Answers</strong>
+              Basic Q/A Support
+            </span>
 
-</div>
+          </div>
 
 
-<div class="stat">
+          <div class="feature">
 
-<b>
-Fast
-</b>
+            <div class="feature-icon">
+              ✦
+            </div>
 
-<small>
-Response workflow
-</small>
+            <span>
+              <strong>Usha.ai</strong>
+              AI First Support
+            </span>
 
-</div>
+          </div>
 
-</div>
 
+          <div class="feature">
 
-<div class="ticket">
+            <div class="feature-icon">
+              ♧
+            </div>
 
-<div>
+            <span>
+              <strong>Human Team</strong>
+              Direct Assistance
+            </span>
 
-<span>
-Latest request
-</span>
+          </div>
 
-<b>
-Technical Support
-</b>
+        </div>
 
-</div>
+      </div>
 
-<span class="badge">
-ACTIVE
-</span>
 
-</div>
 
+      <!-- SUPPORT TEAM -->
 
-<div class="ticket">
+      <div
+        class="team-panel"
+        id="team"
+      >
 
-<div>
+        <div class="team-head">
 
-<span>
-Support channel
-</span>
+          <div class="team-title">
 
-<b>
-WhatsApp / Direct
-</b>
+            <div class="team-icon">
+              ♧
+            </div>
 
-</div>
+            <div>
 
-<span class="badge">
-READY
-</span>
+              <h2>
+                Support Team
+              </h2>
 
-</div>
+              <p>
+                Real people. Real support.
+              </p>
 
-</div>
+            </div>
 
-</div>
+          </div>
 
-</header>
 
+          <div class="online-box">
 
-<!-- SUPPORT -->
+            <span class="online-dot"></span>
 
-<section class="section" id="support">
+            <div>
 
-<div class="container">
+              <strong>
+                ONLINE NOW
+              </strong>
 
-<div class="section-head">
+              <small>
+                We're available
+              </small>
 
-<div>
+            </div>
 
-<div class="kicker">
-Quick support
-</div>
+          </div>
 
-<h2>
-What can we help with?
-</h2>
+        </div>
 
-</div>
 
-<p>
-Choose the support area that matches your need
-and connect with the right workflow.
-</p>
 
-</div>
+        <div class="team-grid">
 
 
-<div class="cards">
+          <!-- MEMBER 1 -->
 
+          <article class="member">
 
-<article class="card">
+            <div class="member-photo">
 
-<div class="icon">
-⌘
-</div>
+              <!-- Replace with AI generated image -->
 
-<h3>
-Technical Support
-</h3>
+              <div class="member-placeholder">
+                SNK
+              </div>
 
-<p>
-Website, software, setup, access and
-technical issues.
-</p>
+              <div class="member-status">
+                <i></i>
+                Online
+              </div>
 
-<a href="#contact">
-Request help →
-</a>
+            </div>
 
-</article>
+            <h3>
+              Shah Neil Khan
+            </h3>
 
+            <div class="member-role">
+              CEO · Founder · Developer
+            </div>
 
-<article class="card">
+            <p>
+              Technical support, website solutions,
+              development and product guidance.
+            </p>
 
-<div class="icon">
-◎
-</div>
+            <div class="member-actions">
 
-<h3>
-Package Support
-</h3>
+              <a href="#contact">
+                WhatsApp
+              </a>
 
-<p>
-Questions about your package,
-included services and support limits.
-</p>
+              <a href="#contact">
+                Email
+              </a>
 
-<a href="#packages">
-Check packages →
-</a>
+            </div>
 
-</article>
+          </article>
 
 
-<article class="card">
 
-<div class="icon">
-◌
-</div>
+          <!-- MEMBER 2 -->
 
-<h3>
-Payment Support
-</h3>
+          <article class="member">
 
-<p>
-Payment confirmation, billing questions
-and transaction assistance.
-</p>
+            <div class="member-photo">
 
-<a href="#contact">
-Get assistance →
-</a>
+              <div class="member-placeholder">
+                NA
+              </div>
 
-</article>
+              <div class="member-status">
+                <i></i>
+                Online
+              </div>
 
+            </div>
 
-<article class="card">
+            <h3>
+              Nusrat Afsana
+            </h3>
 
-<div class="icon">
-?
-</div>
+            <div class="member-role">
+              Partner · UI Designer
+            </div>
 
-<h3>
-Account Help
-</h3>
+            <p>
+              UI/UX guidance, design support and
+              creative website solutions.
+            </p>
 
-<p>
-Login, account access and
-profile-related support.
-</p>
+            <div class="member-actions">
 
-<a href="#contact">
-Get help →
-</a>
+              <a href="#contact">
+                WhatsApp
+              </a>
 
-</article>
+              <a href="#contact">
+                Email
+              </a>
 
+            </div>
 
-<article class="card">
+          </article>
 
-<div class="icon">
-↗️
-</div>
 
-<h3>
-Guides & Resources
-</h3>
 
-<p>
-Simple guides and knowledge resources
-for common tasks.
-</p>
+          <!-- MEMBER 3 -->
 
-<a href="#faq">
-Browse FAQ →
-</a>
+          <article class="member">
 
-</article>
+            <div class="member-photo">
 
+              <div class="member-placeholder">
+                U
+              </div>
 
-<
+              <div class="member-status">
+                <i></i>
+                Online
+              </div>
+
+            </div>
+
+            <h3>
+              Sakhi Jahan Usha
+            </h3>
+
+            <div class="member-role">
+              Co-Founder
+            </div>
+
+            <p>
+              Customer guidance, support coordination
+              and community assistance.
+            </p>
+
+            <div class="member-actions">
+
+              <a href="#usha-ai">
+                Usha.ai
+              </a>
+
+              <a href="#contact">
+                Contact
+              </a>
+
+            </div>
+
+          </article>
+
+
+
+          <!-- MEMBER 4 -->
+
+          <article class="member">
+
+            <div class="member-photo">
+
+              <div class="member-placeholder">
+                SM
+              </div>
+
+              <div class="member-status">
+                <i></i>
+                Online
+              </div>
+
+            </div>
+
+            <h3>
+              Support Manager
+            </h3>
+
+            <div class="member-role">
+              Customer Support
+            </div>
+
+            <p>
+              Handles basic questions, support requests
+              and customer communication.
+            </p>
+
+            <div class="member-actions">
+
+              <a href="#contact">
+                WhatsApp
+              </a>
+
+              <a href="#contact">
+                Email
+              </a>
+
+            </div>
+
+          </article>
+
+
+
+          <!-- MEMBER 5 -->
+
+          <article class="member">
+
+            <div class="member-photo">
+
+              <div class="member-placeholder">
+                CC
+              </div>
+
+              <div class="member-status">
+                <i></i>
+                Online
+              </div>
+
+            </div>
+
+            <h3>
+              Content Creator
+            </h3>
+
+            <div class="member-role">
+              Content & Community
+            </div>
+
+            <p>
+              Helps with content-related questions,
+              updates and useful resources.
+            </p>
+
+            <div class="member-actions">
+
+              <a href="#contact">
+                WhatsApp
+              </a>
+
+              <a href="#contact">
+                Email
+              </a>
+
+            </div>
+
+          </article>
+
+        </div>
+
+
+
+        <!-- USHA AI MINI BAR -->
+
+        <div class="ai-support">
+
+          <div class="ai-left">
+
+            <div class="ai-icon">
+              U
+            </div>
+
+            <div>
+
+              <h3>
+                Usha.ai Basic Support
+              </h3>
+
+              <p>
+                Ask common questions and get instant
+                first-level assistance.
+              </p>
+
+            </div>
+
+          </div>
+
+          <div class="ai-badge">
+            AI SUPPORT · ONLINE
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </header>
+
+
+
+  <!-- =======================================================
+       SUPPORT AREAS
+  ======================================================== -->
+
+  <section
+    class="section"
+    id="support"
+  >
+
+    <div class="container">
+
+      <div class="section-head">
+
+        <div class="kicker">
+          Quick Support
+        </div>
+
+        <h2>
+          What can we help with?
+        </h2>
+
+        <p>
+          Start with Usha.ai for basic questions,
+          or connect directly with the WebsiteDeals
+          support team when you need human assistance.
+        </p>
+
+      </div>
+
+
+      <div class="support-grid">
+
+
+        <article class="support-card">
+
+          <div class="support-icon">
+            ?
+          </div>
+
+          <h3>
+            Basic Q/A
+          </h3>
+
+          <p>
+            Get quick answers to common WebsiteDeals
+            questions through Usha.ai.
+          </p>
+
+          <a href="#usha-ai">
+            Ask Usha.ai →
+          </a>
+
+        </article>
+
+
+
+        <article class="support-card">
+
+          <div class="support-icon">
+            ◇
+          </div>
+
+          <h3>
+            Website Support
+          </h3>
+
+          <p>
+            Need help understanding a website,
+            package or service? We're here to help.
+          </p>
+
+          <a href="#contact">
+            Get help →
+          </a>
+
+        </article>
+
+
+
+        <article class="support-card">
+
+          <div class="support-icon">
+            ◎
+          </div>
+
+          <h3>
+            Account Help
+          </h3>
+
+          <p>
+            Login, account access and basic profile
+            related assistance.
+          </p>
+
+          <a href="#contact">
+            Get assistance →
+          </a>
+
+        </article>
+
+
+
+        <article class="support-card">
+
+          <div class="support-icon">
+            $
+          </div>
+
+          <h3>
+            Payment Questions
+          </h3>
+
+          <p>
+            Basic payment, order and transaction
+            related questions.
+          </p>
+
+          <a href="#contact">
+            Contact support →
+          </a>
+
+        </article>
+
+
+
+        <article class="support-card">
+
+          <div class="support-icon">
+            ◉
+          </div>
+
+          <h3>
+            Package Questions
+          </h3>
+
+          <p>
+            Learn about WebsiteDeals packages,
+            services and available options.
+          </p>
+
+          <a href="#contact">
+            Ask team →
+          </a>
+
+        </article>
+
+
+
+        <article class="support-card">
+
+          <div class="support-icon">
+            ↗
+          </div>
+
+          <h3>
+            Human Support
+          </h3>
+
+          <p>
+            If Usha.ai cannot solve your question,
+            our support team can take over.
+          </p>
+
+          <a href="#team">
+            Meet the team →
+          </a>
+
+        </article>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- =======================================================
+       USHA AI
+  ======================================================== -->
+
+  <section
+    class="section"
+    id="usha-ai"
+  >
+
+    <div class="container">
+
+      <div class="usha-section">
+
+        <div class="usha-grid">
+
+
+          <div class="usha-content">
+
+            <div class="usha-title">
+
+              <div class="usha-logo">
+                U
+              </div>
+
+              <div>
+
+                <span>
+                  WebsiteDeals AI Support
+                </span>
+
+                <h2>
+                  Meet Usha.ai
+                </h2>
+
+              </div>
+
+            </div>
+
+
+            <p>
+              Usha.ai is the first support layer for
+              WebsiteDeals customers. Ask basic questions,
+              understand services, find common answers and
+              get guidance before connecting with a human
+              support member.
+            </p>
+
+
+            <div class="usha-list">
+
+              <div class="usha-item">
+                Basic Website Questions
+              </div>
+
+              <div class="usha-item">
+                Package Information
+              </div>
+
+              <div class="usha-item">
+                Account Questions
+              </div>
+
+              <div class="usha-item">
+                Order & Payment Questions
+              </div>
+
+              <div class="usha-item">
+                Common Troubleshooting
+              </div>
+
+              <div class="usha-item">
+                Human Support Escalation
+              </div>
+
+            </div>
+
+
+            <div class="hero-actions">
+
+              <a
+                href="#contact"
+                class="primary-btn"
+              >
+                ✦ Start with Usha.ai
+              </a>
+
+              <a
+                href="#team"
+                class="secondary-btn"
+              >
+                Talk to Human Support
+              </a>
+
+            </div>
+
+          </div>
+
+
+
+          <!-- CHAT PREVIEW -->
+
+          <div class="chat-preview">
+
+            <div class="chat-top">
+
+              <div class="chat-user">
+
+                <div class="chat-avatar">
+                  U
+                </div>
+
+                <div>
+
+                  <strong>
+                    Usha.ai
+                  </strong>
+
+                  <small>
+                    ● Online · Basic Support
+                  </small>
+
+                </div>
+
+              </div>
+
+              <span>
+                ✦
+              </span>
+
+            </div>
+
+
+            <div class="chat-message">
+
+              Hi! I'm Usha.ai.
+              How can I help you today?
+
+            </div>
+
+
+            <div class="chat-message user">
+
+              I have a question about my
+              WebsiteDeals package.
+
+            </div>
+
+
+            <div class="chat-message">
+
+              Sure! I can help with basic package
+              information. If your question needs
+              human assistance, I'll connect you
+              with our support team.
+
+            </div>
+
+
+            <div class="chat-input">
+
+              <span>
+                Ask a basic question...
+              </span>
+
+              <button>
+                →
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- =======================================================
+       FAQ
+  ======================================================== -->
+
+  <section
+    class="section"
+    id="faq"
+  >
+
+    <div class="container">
+
+      <div class="section-head">
+
+        <div class="kicker">
+          Knowledge Base
+        </div>
+
+        <h2>
+          Basic questions, simple answers.
+        </h2>
+
+        <p>
+          Start here for common support questions.
+          For anything more specific, our team is ready.
+        </p>
+
+      </div>
+
+
+      <div class="faq">
+
+
+        <details>
+
+          <summary>
+            What is WebsiteDeals Support?
+          </summary>
+
+          <p>
+            WebsiteDeals Support is the customer assistance
+            center for basic questions, website help,
+            package information, account assistance and
+            direct support.
+          </p>
+
+        </details>
+
+
+
+        <details>
+
+          <summary>
+            What can Usha.ai help me with?
+          </summary>
+
+          <p>
+            Usha.ai is designed for first-level basic Q/A,
+            common website questions, package information,
+            account questions and general guidance.
+          </p>
+
+        </details>
+
+
+
+        <details>
+
+          <summary>
+            Can I talk to a real person?
+          </summary>
+
+          <p>
+            Yes. If your question needs human assistance,
+            you can contact the WebsiteDeals Support Team
+            directly.
+          </p>
+
+        </details>
+
+
+
+        <details>
+
+          <summary>
+            Can support help with website problems?
+          </summary>
+
+          <p>
+            Basic website-related questions can be handled
+            through the support workflow. More technical
+            issues can be escalated to the development team.
+          </p>
+
+        </details>
+
+
+
+        <details>
+
+          <summary>
+            How does Usha.ai connect me to the team?
+          </summary>
+
+          <p>
+            Usha.ai works as the first support layer. When
+            a question requires human assistance, the user
+            can move from AI support to the appropriate
+            WebsiteDeals team member.
+          </p>
+
+        </details>
+
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- =======================================================
+       CONTACT
+  ======================================================== -->
+
+  <section
+    class="section"
+    id="contact"
+  >
+
+    <div class="container">
+
+      <div class="contact">
+
+        <h2>
+          Still need help?
+          Talk to our support team.
+        </h2>
+
+        <p>
+          Start with Usha.ai for basic Q/A or contact
+          the WebsiteDeals team directly for human support.
+        </p>
+
+        <a
+          href="mailto:support@websitedeals.com"
+          class="contact-btn"
+        >
+          Contact WebsiteDeals Support →
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- =======================================================
+       FOOTER
+  ======================================================== -->
+
+  <footer>
+
+    <div class="container footer-inner">
+
+      <div>
+        © 2026
+        <span class="footer-brand">
+          Website<span>Deals</span>
+        </span>
+        · Support Center
+      </div>
+
+      <div>
+        Usha.ai · Basic Q/A Support · Human Support
+      </div>
+
+    </div>
+
+  </footer>
+
+
+
+  <!-- =======================================================
+       JAVASCRIPT
+  ======================================================== -->
+
+  <script>
+
+    /* =====================================================
+       SMOOTH NAVIGATION
+    ===================================================== */
+
+    document.querySelectorAll(
+      'a[href^="#"]'
+    ).forEach(function(link){
+
+      link.addEventListener(
+        "click",
+        function(e){
+
+          const targetId =
+            this.getAttribute("href");
+
+          if(
+            targetId === "#" ||
+            !targetId
+          ){
+            return;
+          }
+
+          const target =
+            document.querySelector(targetId);
+
+          if(target){
+
+            e.preventDefault();
+
+            target.scrollIntoView({
+              behavior:"smooth",
+              block:"start"
+            });
+
+          }
+
+        }
+      );
+
+    });
+
+
+
+    /* =====================================================
+       AI CHAT PREVIEW BUTTON
+    ===================================================== */
+
+    const chatButton =
+      document.querySelector(
+        ".chat-input button"
+      );
+
+    const chatInput =
+      document.querySelector(
+        ".chat-input span"
+      );
+
+    if(chatButton && chatInput){
+
+      chatButton.addEventListener(
+        "click",
+        function(){
+
+          chatInput.textContent =
+            "Usha.ai is ready to help.";
+
+          chatInput.style.color =
+            "#72f51e";
+
+        }
+      );
+
+    }
+
+
+
+    /* =====================================================
+       ONLINE STATUS
+    ===================================================== */
+
+    const onlineDots =
+      document.querySelectorAll(
+        ".online-dot, .member-status i"
+      );
+
+    setInterval(function(){
+
+      onlineDots.forEach(function(dot){
+
+        dot.style.opacity =
+          dot.style.opacity === "0.45"
+            ? "1"
+            : "0.45";
+
+      });
+
+    },1800);
+
+  </script>
+
+
+</body>
+</html>
